@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function * gen(args) {
+        //     console.log(args);
+
+        //     let a = yield 'yielda';
+        //     console.log(a);
+
+        //     let b = yield 'yieldb';
+        //     console.log(a, b);
+
+        //     let c = yield 'yieldc';
+        //     console.log(a ,b, c);
+        // }
+
+        // let iterator = gen('ready'); //这个传参是给第一次next的。
+        // //第一个next执行第一个yield上面的内容，返回被指向第一个代码块的对象
+        // //第一个next传参没有用，因为第一个next并不会执行任何一个代码块
+        // //调用一次返回并指向下一个码块（第一调用指向第一块）
+        // console.log(iterator.next(00)); // （这里传参没用）ready    {value: "yielda", done: false}  
+        // console.log(iterator.next(11));//11         {value: "yieldb", done: false} 
+        // console.log(iterator.next(22));//11 22      {value: "yieldc", done: false} 
+        // console.log(iterator.next(33));//11 22 33   {value: "undefine", done: true} 
+
+        // 异步编程
+        // 1秒后输出111 2秒后输出222 3秒后输出333
+        
+        // function timer1(){
+        //     setTimeout(()=> {
+        //         console.log(111);
+        //         iterator.next() //在生成器内部代码自动执行next
+        //     },1000)
+            
+        // }
+        // function timer2(){
+        //     setTimeout(()=> {
+        //         console.log(222);
+        //         iterator.next()
+       
+        //     },1000)
+        // }
+            
+        // function timer3(){
+        //     setTimeout(()=> {
+        //         console.log(333);
+        //         iterator.next()
+        //     },1000)
+           
+        // }
+
+        // function *gen(){
+        //     yield timer1();
+        //     yield timer2();
+        //     yield timer3();
+        // }
+
+        // let iterator = gen();
+        // iterator.next() //执行第一段next
+
+         //用户数据-》商品列表=》商品数据 
+        function getUser(name){
+            console.log('username:' + name);
+            setTimeout(()=> {
+                iterator.next('用户数据') //在生成器内部代码自动执行next
+            },1000)
+            
+        }
+        function getGoodList(user){
+            console.log('getGoodList-->' + user);
+            setTimeout(()=> {
+                iterator.next('商品列表')
+       
+            },1000)
+        }
+            
+        function getGoodDetail(goodList){
+            console.log('getGoodDetail-->' + goodList);
+            setTimeout(()=> {
+                iterator.next('商品详情')
+            },1000)
+           
+        }
+
+        function *gen(name){
+            let user = yield getUser(name);
+            let goodList = yield getGoodList(user);
+            let goodDetail = yield getGoodDetail(goodList);
+            console.log('*gen-->', goodDetail)
+        }
+
+        let iterator = gen('小明');
+        iterator.next() //执行第一段next
+
+
+    </script>
+</body>
+</html>

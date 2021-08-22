@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Wheel(raduis) {
+            this.raduis = raduis;
+        }
+
+        function Interior(color) {
+            this.color = color;
+        }
+
+        function Engine(engine) {
+            this.engine = engine
+        }
+
+        function Car(raduis, color, engine, width, height, len) {
+            Wheel.call(this, raduis);
+            Interior.call(this, color);
+            Engine.call(this, engine);
+            this.width = width;
+            this.height = height;
+            this.len = len;
+        }
+
+        var car1 = new Car(10, 'red', 'v8', 100, 200, 300)
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        var obj = {}
+        Person.call(obj, 'cheng', 300)
+    </script>
+</body>
+
+</html>

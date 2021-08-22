@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr = [5,0,19,99,106,5,3,2,1,24,7,10];
+        // arr.sort(function (a, b) {
+        //     return b - a //如果a大于b，差值为负数，那么a放在前面，大的放前，降序
+        // })
+        // console.log(arr);
+
+        // var arr = [5,0,19,99,106,5,3,2,1,24,7,10];
+        // arr.sort(function (a, b) {
+        //     return a - b //如果a大于b，差值为正，那么b放在前面，小的放前，升序
+        // })
+        // console.log(arr);
+
+        // var lists = [{age:18},{age:20},{age:40},{age:50}]
+        // lists.sort(function (a, b) {
+        //     return a.age - b.age
+        // })
+        // console.log(lists);
+
+        //乱序
+        var arr = [5,0,19,99,106,5,3,2,1,24,7,10];
+        arr.sort(function (a,b){
+            return Math.random() - 0.5;
+        })
+        console.log(arr);
+
+    </script>
+</body>
+</html>

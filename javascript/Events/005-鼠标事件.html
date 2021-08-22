@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: red;"></div>
+    <div style="background-color: green;"></div>
+    <div style="background-color: yellow;"></div>
+    <button id="btn" style="position: absolute; right: 0;">添加方块</button>
+    <script>
+        var btn = document.getElementById('btn');
+        btn.onclick = function (e) {
+            var div = document.createElement('div');
+            div.style.background = 'red';
+            div.innerText = (new Date()).getFullYear();
+            document.body.appendChild(div);
+            e.stopPropagation();
+
+        }
+        btn.onmousedown = function (e) {
+            e.stopPropagation();
+
+        }
+        btn.onmousemove = function (e) {
+            e.stopPropagation();
+
+        }
+        // document.onmousedown = function (e) {
+        //     var e = e || window.event
+        //     var target = e.target || e.srcElement;
+        //     // var divX = parseInt(e.offsetX);  // 让鼠标一直在点下鼠标的位置
+        //     // var divY = parseInt(e.offsetY);
+
+        //     // var targetX = parseInt(target.style.width) / 2; //让鼠标一直在物体的中间
+        //     // var targetY = parseInt(target.style.height) / 2;
+        //     var targetX = parseInt(window.getComputedStyle(target, null).width) / 2; //(拿到实际的样式让鼠标一直在物体的中间
+        //     var targetY = parseInt(window.getComputedStyle(target, null).height) / 2;
+        //     document.onmousemove = function (e) {
+        //         var e = e || window.event
+        //         target.style.left = e.pageX - targetX
+        //         target.style.top = e.pageY - targetY
+        //     }
+        //     document.onmouseup = function (e) {
+        //         document.onmousemove = null;
+        //     }
+
+        // }
+
+        /*
+        *参数：容器元素。
+        *基于冒泡模型，容器内的所有元素都会变得可移动。
+        *如果不想让其中的某个函数移动，绑定事件并阻止冒泡 e.stopPropagation();
+        */
+        function drag(element) {
+            element.onmousedown = function (e) {
+                var e = e || window.event
+                var target = e.target || e.srcElement;
+                // var divX = parseInt(e.offsetX);  // 让鼠标一直在点下鼠标的位置
+                // var divY = parseInt(e.offsetY);
+                var targetX = parseInt(window.getComputedStyle(target, null).width) / 2; //(拿到实际的样式让鼠标一直在物体的中间
+                var targetY = parseInt(window.getComputedStyle(target, null).height) / 2;
+                element.onmousemove = function (e) {
+                    var e = e || window.event
+                    target.style.left = e.pageX - targetX
+                    target.style.top = e.pageY - targetY
+                }
+                element.onmouseup = function (e) {
+                    element.onmousemove = null;
+                }
+
+            }
+        }
+        drag(document.body)
+    </script>
+</body>
+
+</html>

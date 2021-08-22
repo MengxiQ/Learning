@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //原始值克隆,但是引用值只会拷贝路径
+        // function clone(origin, targer) {
+        //     var targer = targer || {};
+        //     for(var prop in origin) {
+        //         targer[prop] = origin[prop]
+        //     }
+        //     return targer;
+        // }
+        // var obj = {
+        //     name: 'ming',
+        //     age:15
+        // }
+        // var obj1 = clone(obj)
+
+        //深度克隆，处理属性是对象或者数组的问题。
+        // function clone(origin, targer) {
+        //     targer =  targer || {};
+        //     for(var prop in origin)
+        //     {
+        //          if(origin[prop] instanceof Object && origin[prop] != null ) {
+        //             targer[prop]  = origin[prop] instanceof Array ? [] : {}  
+        //             clone(origin[prop], targer[prop]);
+        //         }
+        //         else {
+        //             targer[prop] = origin[prop];
+        //         }
+        //      }
+        //     return targer;  
+        // }
+
+        //改成toString
+        function clone(origin, targer) {
+            targer =  targer || {};
+            for(var prop in origin)
+            {
+                 if(origin[prop] instanceof Object && origin[prop] != null ) {
+                    targer[prop]  = origin[prop] instanceof Array ? [] : {}  
+                    clone(origin[prop], targer[prop]); //利用targer传入一个引用，所以内部处理后还是这个对象的上面的属性。
+                }
+                else {
+                    targer[prop] = origin[prop];
+                }
+             }
+            return targer;  
+        }
+
+
+
+
+        var s = {
+            a:'123',
+            b: {
+                a:123,
+                b:[1,2,3,{a:123,b:'1'}],
+                c:'123',
+                d:null,
+                e:undefined,
+                f:NaN
+            },
+            c:123
+        }
+        var t = clone(s)
+        console.log(t);
+
+    </script>
+</body>
+</html>

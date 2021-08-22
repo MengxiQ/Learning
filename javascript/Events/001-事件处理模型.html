@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .red {
+            height: 300px;
+            width: 300px;
+            background: red;
+        }
+        .yellow {
+            height: 200px;
+            width: 200px;
+            background: yellow;
+        }
+        .green {
+            height: 100px;
+            width: 100px;
+            background: green;
+        }
+        div{
+            /* position: absolute; */
+        }
+        div:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="red abc">
+        <div class="yellow">
+            <div class="green"></div>
+        </div>
+    </div>
+    <a href="javascript:">lin1</a>
+    <a href="javascript:void(false)">lin2</a>
+    <a href="https://www.baidu.com" onclick="return false">lin3</a>
+    <a href="https://www.baidu.com" class="btn" >default</a>
+    <a href="javascript:void(false)" class="btn">lin4</a>
+    <script type="text/javascript">
+        //不能写在原型链上，因为IE8并不符合标准的DOM结构树，没有原型链。
+        if (!document.getElementsByClassName) {                                 //如果浏览器不支持document.getElementsByClassName
+        document.getElementsByClassName = function (className, element) {     //我们先将要写的方法封装成一个函数
+            var children = (element || document).getElementsByTagName('*');   //获取html中所有的DOM节点 
+            var elements = [];                                                //用一个空数组存放要获取的class类名
+            for (var i = 0; i < children.length; i++) {
+                var child = children[i];                                                        
+                var classNames = child.className.split(' ');                   //将所有的class节点保存在一个数组之中
+                for (var j = 0; j < classNames.length; j++) {                  //遍历循环，将满足要求的class存入elements空数组中
+                    if (classNames[j] == className) {
+                        elements.push(child);
+                        break;
+                    }
+                }
+            }
+            return elements;                                                    //返回新的数组
+        };
+        }
+
+
+        var red = document.getElementsByClassName('red')[0];
+        var yellow = document.getElementsByClassName('yellow')[0];
+        var green = document.getElementsByClassName('green')[0];
+
+        // 冒泡
+        red.onclick = function (e){
+            // console.log( this.className);
+            console.log('Pred');
+        }
+        yellow.onclick = function (e){
+            console.log('Pyellow');
+        }
+        green.onclick = function (e){
+            var e = e || window.event
+            console.log('Pgreen');
+            // e.stopPropagation();
+            stopBubble(e)
+        }
+
+        //捕获
+        // red.addEventListener('click', function (e){
+        //     console.log('red');
+        // }, true)
+        // yellow.addEventListener('click', function (e){
+        //     console.log('yellow');
+        // }, true)
+        // green.addEventListener('click', function (e){
+        //     console.log('green');
+        // }, true)
+        
+        var btn = document.getElementsByClassName('btn')[1];
+        btn.onclick = function (e) {
+            var e = e || window.event
+            console.log(e);
+            cancelHandler(e)
+        }
+
+
+
+
+        //兼容性函数：阻止冒泡
+        function stopBubble(event) {
+            if(event.stopPropagation) {
+                // console.log('W3C');
+                event.stopPropagation();
+            }else {
+                // console.log('IE8');
+                event.cancelBubble = true;
+            }
+
+        }
+
+        //兼容性函数：阻止默认事件
+        function cancelHandler(event) {
+            if(event.preventDefault) {
+                // console.log('W3C');
+                event.preventDefault()
+            } else {
+                // console.log('IE8');
+                event.retunValue = false;
+            }
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let arr = [1,2,3,4,5,'iii'], 
+        //     obj = {name:'xiaoming', age:18};
+
+        // for(let item of arr) {
+        //     console.log(item);
+        // }
+        // for(let item in obj) {
+        //     console.log(item);
+        // }
+        // function test(...args){
+        //     for (let item of args) {
+        //         console.log(item);
+        //     }
+        // }
+        // test('a', 'b', 'c')
+        // let arr = ['西游记','水浒传','红楼梦','三国演义'];
+        // let iterator = arr[Symbol.iterator]();
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+
+        // 迭代器的next函数返回的数据模板
+        // {value: "三国演义", done: false}
+        // {value: undefined, done: true}
+        let student = {
+            name: '小红',
+            books: ['西游记', '水浒传', '红楼梦', '三国演义'],
+            [Symbol.iterator]() {
+                let index = 0;
+                let _this = this;
+                return {
+                    next: function () {
+                        if (index < _this.books.length) {
+                            let result = {
+                                value: _this.books[index],
+                                done: false
+                            }
+                            index++;
+                            return result;
+                        } else {
+                            let result = {
+                                value: undefined,
+                                done: true
+                            }
+                            return result;
+                        }
+
+                    }
+                }
+            }
+
+        }
+        for (let item of student) {
+            console.log(item);
+        }
+    </script>
+</body>
+
+</html>

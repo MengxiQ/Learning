@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //1 原型链模式
+    // function Grand() {
+    //     this.lastName = '邓'
+    // }
+    // var grand = new Grand()
+
+    // Father.prototype = grand
+    // function Father() {
+
+    // }
+    // var father = new Father()
+
+    // Son.prototype = father
+    // function Son(name) {
+ 
+    // }
+
+    // var son1 = new Son()
+    // var son2 = new Son()
+
+    // //2 用call或者apply借用别人的构造函数
+
+    // function Person(name){
+    //     this.name = name;
+    // }
+    // function Student(name, grade) {
+    //     Person.call(this,name)
+    //     this.grade = grade;
+    // }
+    // var student = new Student('小芳','二年级')
+
+    // //3 共享原型
+  
+    // function Father() {
+    // }
+    // Father.prototype.lastName = 'deng'
+    // function Son(name) {
+    //     this.name = name;
+    // }
+    // Son.prototype = Father.prototype;
+    // //给Son构造函数添加新属性
+    // Son.prototype.sex = 'fale'
+
+    // var son = new Son('小明')
+
+    //4 圣杯模式
+    function inherit(target,source){
+        function F() {}
+        F.prototype = source.prototype
+        target.prototype = new F() //new 出来的对象是完全独立的。
+        target.prototype.constructor = target //指定构造函数，因为默认这里显示的是根构造函数的proto
+        target.prototype.uber = source //父构造函数
+    }
+
+    function Father(){}
+    function Son(){}
+    inherit(Son,Father)
+
+    var son = new Son()
+
+       
+
+    
+</script>
+</body>
+</html>

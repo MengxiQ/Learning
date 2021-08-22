@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul,li{
+            list-style: none;
+        }
+        li {
+            display: inline-block;
+            height: 100px;
+            width: 150px;
+            border: 1px black solid;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        // var boxs = document.getElementsByTagName('li');
+        // for(let i = 0; i < boxs.length; i++ ) {
+        //     boxs[i].onclick = function (){
+        //         //这里的i有块级作用域，所以拿到的是当前的i，而不是全局的。
+        //         boxs[i].style.background = 'pink';
+        //     }
+        // }
+
+        // const PI = 3.1415926;
+        // // console.log(PI);
+
+        // //变量的解构赋值
+        // // 数组
+        // let arr = [1,2,3,4];
+        // let [a,b,c,d] = arr;
+        // // console.log(a,b,c,d);
+        // //对象
+        // let obj = {
+        //     name: 'xiaoming',
+        //     age: 18
+        // }
+        // let {name, age} = obj;
+        // // console.log(name, age);
+
+        // //模板字符串
+        // let str = '666666';
+        // let data = `
+        //     <div>
+        //         <li>${str}</li>    
+        //     </div>
+        
+        // `
+        // console.log(data);
+
+        //简化对象写法
+        // let name = 'xiaoming';
+        // let obj = {
+        //     name,
+        //     age: 18,
+        //     say(){
+        //         console.log(this.name);
+        //     }
+        // }
+        // 箭头函数
+        // window.name = '小红';
+        // //这个继承this
+        // function test() {
+        //     console.log(this.name);
+        // } 
+
+        // //函数声明的作用域this指向window
+        // let test2 = () => {
+        //     console.log(this.name);
+        // }
+        // test(); //小红
+        // test2(); //小红
+        // let pow = n => n * n ;
+        // console.log(pow(2));
+
+        //箭头函数的错误用法：点击后3秒变颜色
+        // var boxs = document.getElementsByTagName('li');
+        // for(let i = 0; i < boxs.length; i++ ) {
+        //     boxs[i].onclick = (e) => {
+        //         //因为使用了箭头函数，那么this指向的函数声明下左右域的this,这里的this是上层的上层作用域window
+        //         console.log(this); //window
+        //        setTimeout(()=> {
+        //             this.style.background = 'pink'; //报错
+        //        },3000)
+
+        //     }
+        // }
+        // var obj = {
+        //     age: 'xiaoming',
+        //     say: () => {
+        //         console.log(this);//window
+        //         console.log(this.age);//undefine
+        //     }
+        // }
+        // obj.say()//undefine,因为this指向的window
+
+        // rest参数
+        // function test(...args) {
+        //     console.log(args);
+        // }
+        // test(1,2,3)
+        // let test = (a, b=10, ...args) => {
+        //     console.log(a);
+        //     console.log(b)
+        //     console.log(args);
+        // }
+        // test(1, 2, 3, 4)
+
+        //扩展运算符 ...
+        // let arr = [1,2,3,4];
+        // function test() {
+        //     console.log(arguments);
+        // }
+        // test(...arr)
+
+        let obj1 = {q:'11111'}, obj2 = {w: '22222'}, obj3 = {e: '3333'}, obj4 = {r: '4444'};
+        let objAll = {...obj1, ...obj2, ...obj3, ...obj4};
+        console.log(objAll);//{q: "11111", w: "22222", e: "3333", r: "4444"}
+        
+        let arr1 = [1,2,3], arr2 = [3,4,5,6]
+        let arrAll = [...arr1, ...arr2]
+        console.log(arrAll);//[1, 2, 3, 3, 4, 5, 6]
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组去重
+        Array.prototype.unique = function () {
+            var obj = {},
+               temp = [],
+               len = this.length;
+            for(var prop in this){
+                if(obj[this[prop]] === undefined && this.hasOwnProperty(prop) ) { //for in 的话要过滤原型链上的属性
+                    console.log(this[prop])
+                    obj[this[prop]] = 'setting'
+                    temp.push(this[prop])
+                }
+            }
+            console.log(obj);
+            return temp;
+        }
+        var arr = [1,1,1,1,2,2,2,23,3,3,3,3,'6666','7777',null,null,undefined,NaN,undefined,NaN]
+        console.log(arr.unique());
+    </script>
+</body>
+</html>

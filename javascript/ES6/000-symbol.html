@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let o = Symbol();
+        // console.log(o);
+        // console.log(typeof o);
+        // let s1 = Symbol('s1'); //Symbol(s1)
+        // console.log(s1);
+        class Person{
+            static [Symbol.hasInstance](target) {
+                console.log(target);
+                console.log('我被用来检测了');
+                return false;
+            }
+        }
+        let obj = {};
+        console.log(obj instanceof Person);
+    </script>
+</body>
+</html>
