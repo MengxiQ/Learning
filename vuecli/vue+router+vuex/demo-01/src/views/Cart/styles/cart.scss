@@ -1,0 +1,14 @@
+@use "sass:math";
+$content-width:990px;
+$header-height:35px;
+$cart-content-width: $content-width;
+$cart-column-width: math.div($content-width,6);
+$cart-column-goods-width: 270px; //330
+$cart-column-checkbox-width: 60px;
+
+$cart-toolbar-height: 50px;
+
+body{
+    padding: 0;
+    margin: 0;
+}
